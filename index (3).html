@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memo DeJa vu – Class of 2026 | Department of Educational Management</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <div class="nav-brand">MEMO DEJA VU</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Journey</a></li>
+    <li><a href="#timeline">Our Era</a></li>
+    <li><a href="#legacy-wall">Legacy</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#capsule">Capsule</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Class of 2026 &nbsp;·&nbsp; Department of Educational Management</div>
+    <h1 class="hero-title">Memo DeJa <span>Vu</span></h1>
+    <div class="hero-class">Class of 2026</div>
+    <div class="hero-dept">Department of Educational Management</div>
+    <div class="hero-line"></div>
+    <p class="hero-tagline">"Four Years. One Story. Forever Remembered."</p>
+    <a href="#about" class="hero-btn">Enter Our Legacy</a>
+  </div>
+  <button class="audio-toggle" id="audioToggle" title="Toggle Music">♪</button>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">Our Journey</h2>
+        <div class="section-divider"></div>
+        <p>We arrived as strangers — fresh faces full of wonder and uncertainty — and we leave as a family forged in late-night study sessions, hilarious mishaps, and triumphs that no one outside this department could fully understand.</p>
+        <p>The Department of Educational Management's Class of 2028 is more than a group of graduates. We are storytellers, innovators, and future shapers of education across our nation and beyond. Four years have tested us, refined us, and ultimately defined us.</p>
+        <p>This is not just a graduation — it is a testament to resilience, brotherhood, sisterhood, and the relentless pursuit of excellence.</p>
+        <div class="about-stats">
+          <div class="stat-card reveal reveal-delay-1">
+            <span class="stat-number count-up" data-target="127">0</span>
+            <span class="stat-label">Graduates</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-2">
+            <span class="stat-number count-up" data-target="4">0</span>
+            <span class="stat-label">Years</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <span class="stat-number count-up" data-target="847">0</span>
+            <span class="stat-label">Memories</span>
+          </div>
+          <div class="stat-card reveal reveal-delay-4">
+            <span class="stat-number count-up" data-target="1">0</span>
+            <span class="stat-label">Legacy</span>
+          </div>
+        </div>
+      </div>
+<div class="about-visual reveal reveal-delay-2">
+  <div class="about-frame"></div>
+  <img src="images/group.png" alt="Class Group Photo" class="about-image">
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section id="timeline">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:4rem;" class="reveal">
+      <span class="section-label">Four Chapters</span>
+      <h2 class="section-title">Our Era</h2>
+      <div class="section-divider" style="margin:0 auto;"></div>
+    </div>
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+
+      <!-- Year 1 -->
+      <div class="year-item reveal">
+        <div class="year-content" onclick="toggleYear(this)">
+          <div class="year-number">Year One · 2022/23</div>
+          <h3 class="year-name">The Beginning</h3>
+          <p class="year-desc">We arrived nervous, excited, and completely unprepared for what lay ahead. Every orientation, every first lecture, every awkward introduction — these were the seeds of something extraordinary.</p>
+          <div class="year-memories">
+            <div class="memory-img">[ Freshman Week Photo ]</div>
+            <p style="margin-top:1rem; font-style:italic; color:var(--white-60); font-size:0.9rem;">Orientation week chaos, making first friends, and discovering the departmental culture that would shape us all.</p>
+          </div>
+        </div>
+        <div class="year-center"><div class="year-dot">Y1</div></div>
+        <div class="year-empty"></div>
+      </div>
+
+      <!-- Year 2 -->
+      <div class="year-item reveal">
+        <div class="year-empty"></div>
+        <div class="year-center"><div class="year-dot">Y2</div></div>
+        <div class="year-content" onclick="toggleYear(this)">
+          <div class="year-number">Year Two · 2023/24</div>
+          <h3 class="year-name">Growth</h3>
+          <p class="year-desc">We grew into our roles. We started to understand what Educational Management truly meant, took leadership, clashed beautifully, and discovered our individual voices within the collective.</p>
+          <div class="year-memories">
+            <div class="memory-img">[ Class Activity Photo ]</div>
+            <p style="margin-top:1rem; font-style:italic; color:var(--white-60); font-size:0.9rem;">Group projects, mentorship programs, cultural nights, and the first taste of real departmental leadership.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Year 3 -->
+      <div class="year-item reveal">
+        <div class="year-content" onclick="toggleYear(this)">
+          <div class="year-number">Year Three · 2024/25</div>
+          <h3 class="year-name">The Hustle</h3>
+          <p class="year-desc">This was the crucible. Research papers, practicum, presentations, and the beautiful madness of becoming serious scholars while still finding time for laughter and late-night escapades.</p>
+          <div class="year-memories">
+            <div class="memory-img">[ Study Group Photo ]</div>
+            <p style="margin-top:1rem; font-style:italic; color:var(--white-60); font-size:0.9rem;">Library all-nighters, coffee-fueled breakthroughs, and the unbreakable bond forged under academic pressure.</p>
+          </div>
+        </div>
+        <div class="year-center"><div class="year-dot">Y3</div></div>
+        <div class="year-empty"></div>
+      </div>
+
+      <!-- Year 4 -->
+      <div class="year-item reveal">
+        <div class="year-empty"></div>
+        <div class="year-center"><div class="year-dot">Y4</div></div>
+        <div class="year-content" onclick="toggleYear(this)">
+          <div class="year-number">Year Four · 2025/26</div>
+          <h3 class="year-name">Legacy</h3>
+          <p class="year-desc">The final chapter. Thesis submissions, convocation rehearsals, dinner nights, and the bittersweet realization that something irreplaceable was coming to its beautiful conclusion.</p>
+          <div class="year-memories">
+            <div class="memory-img">[ Graduation Rehearsal Photo ]</div>
+            <p style="margin-top:1rem; font-style:italic; color:var(--white-60); font-size:0.9rem;">The year we became who we were always meant to be — and the year we said goodbye to the greatest chapter of our lives.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEGACY WALL ===== -->
+<section id="legacy-wall">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;" class="reveal">
+      <span class="section-label">127 Graduates</span>
+      <h2 class="section-title">The Legacy Wall</h2>
+      <div class="section-divider" style="margin:0 auto;"></div>
+      <p style="color:var(--white-60); font-family:var(--font-serif); font-style:italic;">Click a name to reveal their story</p>
+    </div>
+    <div class="legacy-grid" id="legacyGrid"></div>
+  </div>
+</section>
+
+<!-- ===== STUDENT MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-avatar"   id="modalAvatar"></div>
+    <div class="modal-name"     id="modalName"></div>
+    <div class="modal-emojis"   id="modalEmojis"></div>
+    <div class="modal-quote"    id="modalQuote"></div>
+    <div class="modal-detail">
+      <span class="modal-detail-label">Best School Memory</span>
+      <div class="modal-detail-value" id="modalMemory"></div>
+    </div>
+    <div class="modal-detail">
+      <span class="modal-detail-label">Future Ambition</span>
+      <div class="modal-detail-value" id="modalAmbition"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Captured Moments</span>
+      <h2 class="section-title">Moments We'll Never Forget</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" data-filter="all">All Moments</button>
+      <button class="filter-btn" data-filter="back-to-school">Back to School</button>
+      <button class="filter-btn" data-filter="lecture">Lecture Hall Chronicles</button>
+      <button class="filter-btn" data-filter="dinner">Dinner Night Royalty</button>
+      <button class="filter-btn" data-filter="exam">Exam Survivors</button>
+    </div>
+    <div class="gallery-masonry" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="lightbox-content">
+    <div class="lightbox-img"     id="lightboxImg"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<!-- ===== AWARDS ===== -->
+<section id="awards">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;" class="reveal">
+      <span class="section-label">Recognition</span>
+      <h2 class="section-title">The Class Awards</h2>
+      <div class="section-divider" style="margin:0 auto;"></div>
+    </div>
+    <div class="awards-grid" id="awardsGrid"></div>
+  </div>
+</section>
+
+<!-- ===== TIME CAPSULE ===== -->
+<section id="capsule">
+  <div class="container">
+    <div class="capsule-inner">
+      <div class="reveal">
+        <span class="section-label">Sealed Until 2033</span>
+        <h2 class="section-title">Letter to My Future Self</h2>
+        <div class="section-divider" style="margin:0 auto;"></div>
+        <p style="color:var(--white-60); font-family:var(--font-serif); font-style:italic; margin-bottom:2rem;">Write a message to who you'll be in five years. This capsule reopens in 2033.</p>
+      </div>
+      <div class="countdown-display reveal reveal-delay-1">
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdDays">000</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdHours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdMins">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-number" id="cdSecs">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+      <div class="capsule-form reveal reveal-delay-2">
+        <input type="text" id="capsuleName" placeholder="Your Name" />
+        <textarea id="capsuleMessage" placeholder="Dear future me, when you open this in 2033...&#10;&#10;Remember the person you were today..."></textarea>
+        <button class="lock-btn" id="lockBtn" onclick="lockCapsule()">
+          <span>🔒</span> Lock My Message
+        </button>
+        <div class="capsule-success" id="capsuleSuccess">
+          ✨ Your message has been sealed in the time capsule. It will be waiting for you in 2033. Until then, go build something extraordinary.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPRECIATION ===== -->
+<section id="appreciation">
+  <div class="container">
+    <div class="appreciation-inner reveal">
+      <span class="section-label">With Gratitude</span>
+      <h2 class="section-title">To Our Lecturers & Department</h2>
+      <div class="section-divider" style="margin:0 auto;"></div>
+      <p class="appreciation-text">
+        To every lecturer who showed up even when the classroom was half-empty, who marked our scripts with red ink that stung but built us, who believed in us before we believed in ourselves — this legacy belongs to you as much as it belongs to us.
+      </p>
+      <p class="appreciation-text">
+        The Department of Educational Management did not merely award us degrees. It gave us a lens through which to see education, leadership, and the future. We carry that lens with us into every institution, classroom, and community we will ever touch.
+      </p>
+      <p style="font-family:var(--font-display); font-size:1rem; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-top:2rem;">
+        Thank you. From the Class of 2028.
+      </p>
+    </div>
+    <div class="lecturer-cards reveal reveal-delay-1" id="lecturerCards"></div>
+  </div>
+</section>
+
+<!-- ===== SOUNDTRACK ===== -->
+<section id="soundtrack">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Our Anthems</span>
+      <h2 class="section-title">Our 2026 Soundtrack</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="now-playing-bar reveal" id="nowPlayingBar" style="display:none;">
+      <div class="np-visualizer">
+        <div class="np-bar"></div>
+        <div class="np-bar"></div>
+        <div class="np-bar"></div>
+        <div class="np-bar"></div>
+      </div>
+    <audio id="audioPlayer" preload="auto"></audio>
+      <div class="np-info">
+        <span class="np-label">Now Playing</span>
+        <span id="npTrack" style="font-size:1rem;"></span>
+      </div>
+      <button onclick="stopTrack()" style="padding:0.4rem 1rem; border:1px solid var(--gold-dim); background:transparent; color:var(--gold); cursor:pointer; font-size:0.75rem; border-radius:2px;">Stop ■</button>
+    </div>
+    <div class="tracks-grid reveal reveal-delay-1" id="tracksGrid"></div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-stats">
+      <div>
+        <span class="footer-stat-number count-up" data-target="127">0</span>
+        <span class="footer-stat-label">Total Graduates</span>
+      </div>
+      <div>
+        <span class="footer-stat-number count-up" data-target="847">0</span>
+        <span class="footer-stat-label">Memories Uploaded</span>
+      </div>
+      <div>
+        <span class="footer-stat-number count-up" data-target="4">0</span>
+        <span class="footer-stat-label">Years of Legacy</span>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div class="footer-brand">MEMO DEJA VU</div>
+      <div class="footer-info">
+        <div class="footer-date">Graduation Day — 2026 · Department of Educational Management</div>
+        <div class="footer-powered">Powered by <span>Memo Deja Vu</span> · Annual Legacy Experience</div>
+      </div>
+      <div style="text-align:right; font-family:var(--font-serif); font-style:italic; color:var(--white-60); font-size:0.85rem;">
+        Class of 2026<br>Forever
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript (loaded at end of body for performance) -->
+<script src="main.js"></script>
+
+</body>
+</html>
