@@ -41,16 +41,16 @@ const galleryItems = [
 ];
 
 const awards = [
-  { icon: "🏆", title: "Most Likely to Succeed",   winner: "Ngozi Uche"        },
-  { icon: "😂", title: "Department Comedian",       winner: "Chukwuemeka Eze"   },
-  { icon: "🧠", title: "Silent Genius",             winner: "Ibrahim Musa"      },
-  { icon: "👗", title: "Most Fashionable",          winner: "Kemi Adeyemi"      },
-  { icon: "👻", title: "Always MIA",                winner: "Tunde Abiola"      },
-  { icon: "📚", title: "Born Lecturer",             winner: "Seun Olawale"      },
-  { icon: "💞", title: "Most Beloved",              winner: "Blessing Nwachukwu"},
-  { icon: "🚀", title: "Future Billionaire",        winner: "Damilola Fasanya"  },
-  { icon: "🎤", title: "Motivational Speaker",      winner: "Oluwaseun Badmus"  },
-  { icon: "🕊️", title: "Peacemaker",               winner: "Fatima Al-Hassan"  },
+  { icon: "🏆", title: "Most Likely to Succeed",   nominees: ["Ngozi Uche",         "Ibrahim Musa",       "Seun Olawale"      ] },
+  { icon: "😂", title: "Department Comedian",       nominees: ["Chukwuemeka Eze",    "Tunde Abiola",       "Emeka Okafor"      ] },
+  { icon: "🧠", title: "Silent Genius",             nominees: ["Ibrahim Musa",        "Fatima Al-Hassan",   "Aisha Bello"       ] },
+  { icon: "👗", title: "Most Fashionable",          nominees: ["Kemi Adeyemi",        "Adaeze Okonkwo",     "Ngozi Uche"        ] },
+  { icon: "👻", title: "Always MIA",                nominees: ["Tunde Abiola",        "Yakubu Sani",        "Damilola Fasanya"  ] },
+  { icon: "📚", title: "Born Lecturer",             nominees: ["Seun Olawale",        "Fatima Al-Hassan",   "Ibrahim Musa"      ] },
+  { icon: "💞", title: "Most Beloved",              nominees: ["Blessing Nwachukwu",  "Aisha Bello",        "Adaeze Okonkwo"    ] },
+  { icon: "🚀", title: "Future Billionaire",        nominees: ["Damilola Fasanya",    "Amaka Igwe",         "Ngozi Uche"        ] },
+  { icon: "🎤", title: "Motivational Speaker",      nominees: ["Oluwaseun Badmus",    "Chidinma Okeke",     "Emeka Okafor"      ] },
+  { icon: "🕊️", title: "Peacemaker",               nominees: ["Fatima Al-Hassan",    "Aisha Bello",        "Blessing Nwachukwu"] },
 ];
 
 const tracks = [
@@ -229,30 +229,79 @@ function closeLightbox() {
 }
 
 /* ===== AWARDS ===== */
+/* ===== AWARDS ===== */
 const awardsGrid = document.getElementById('awardsGrid');
+const votedAwards = {};
+const votes = awards.map(a => a.nominees.map(() => 0));
 
-awards.forEach(a => {
+awards.forEach((a, awardIndex) => {
+  const nomineesHTML = a.nominees.map((name, nomineeIndex) => `
+    <div class="nominee-row" id="nominee-${awardIndex}-${nomineeIndex}">
+      <div class="nominee-info">
+        <span class="nominee-medal">${['🥇','🥈','🥉'][nomineeIndex]}</span>
+        <span class="nominee-name">${name}</span>
+      </div>
+      <div class="nominee-right">
+        <div class="vote-bar-wrap">
+          <div class="vote-bar" id="bar-${awardIndex}-${nomineeIndex}"></div>
+        </div>
+        <span class="vote-count" id="count-${awardIndex}-${nomineeIndex}">0</span>
+        <button class="vote-btn" onclick="voteFor(${awardIndex}, ${nomineeIndex})" id="vbtn-${awardIndex}-${nomineeIndex}">
+          Vote
+        </button>
+      </div>
+    </div>
+  `).join('');
+
   const div = document.createElement('div');
   div.className = 'award-card reveal';
   div.innerHTML = `
     <span class="award-icon">${a.icon}</span>
     <div class="award-title">${a.title}</div>
-    <div class="award-winner">${a.winner}</div>
-    <button class="vote-btn" onclick="vote(this)">👍 Agree</button>
-    <span class="vote-count">0 votes</span>
+    <div class="nominees-list">${nomineesHTML}</div>
+    <div class="award-winner-label" id="winner-label-${awardIndex}" style="display:none;">
+      👑 Leading: <span id="winner-name-${awardIndex}"></span>
+    </div>
   `;
   awardsGrid.appendChild(div);
   observer.observe(div);
 });
 
-function vote(btn) {
-  if (btn.classList.contains('voted')) return;
-  btn.classList.add('voted');
-  btn.textContent = '✓ Voted';
-  const countEl = btn.nextElementSibling;
-  countEl.textContent = (parseInt(countEl.textContent) + 1) + ' votes';
-}
+function voteFor(awardIndex, nomineeIndex) {
+  if (votedAwards[awardIndex] !== undefined) return;
 
+  votedAwards[awardIndex] = nomineeIndex;
+  votes[awardIndex][nomineeIndex]++;
+
+  const total = votes[awardIndex].reduce((sum, v) => sum + v, 0);
+
+  awards[awardIndex].nominees.forEach((_, ni) => {
+    const count   = votes[awardIndex][ni];
+    const pct     = total > 0 ? Math.round((count / total) * 100) : 0;
+    const btn     = document.getElementById(`vbtn-${awardIndex}-${ni}`);
+    const countEl = document.getElementById(`count-${awardIndex}-${ni}`);
+    const bar     = document.getElementById(`bar-${awardIndex}-${ni}`);
+    const row     = document.getElementById(`nominee-${awardIndex}-${ni}`);
+
+    countEl.textContent = `${count} vote${count !== 1 ? 's' : ''} · ${pct}%`;
+    bar.style.width = pct + '%';
+
+    if (ni === nomineeIndex) {
+      btn.textContent = '✓ Voted';
+      btn.classList.add('voted');
+      row.classList.add('nominee-voted');
+    } else {
+      btn.textContent = 'Vote';
+      btn.disabled = true;
+      btn.classList.add('vote-disabled');
+    }
+  });
+
+  const maxVotes  = Math.max(...votes[awardIndex]);
+  const leaderIdx = votes[awardIndex].indexOf(maxVotes);
+  document.getElementById(`winner-label-${awardIndex}`).style.display = 'block';
+  document.getElementById(`winner-name-${awardIndex}`).textContent = awards[awardIndex].nominees[leaderIdx];
+}
 /* ===== COUNTDOWN TIMER ===== */
 function updateCountdown() {
   const targetDate = new Date('January 1, 2033 00:00:00').getTime();
