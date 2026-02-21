@@ -536,8 +536,10 @@ section { padding: 6rem 0; position: relative; }
 .nominee-info { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 0; }
 .nominee-medal { font-size: 0.9rem; flex-shrink: 0; }
 .nominee-name {
-  font-family: var(--font-serif); font-size: 0.95rem; color: var(--white-90);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--white-90);
+  word-break: break-word;
 }
 .nominee-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
 .vote-bar-wrap { width: 60px; height: 5px; background: var(--white-10); border-radius: 3px; overflow: hidden; }
