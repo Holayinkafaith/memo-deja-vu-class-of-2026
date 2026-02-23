@@ -302,6 +302,7 @@ function voteFor(awardIndex, nomineeIndex) {
   document.getElementById(`winner-label-${awardIndex}`).style.display = 'block';
   document.getElementById(`winner-name-${awardIndex}`).textContent = awards[awardIndex].nominees[leaderIdx];
 }
+
 /* ===== COUNTDOWN TIMER ===== */
 function updateCountdown() {
   const targetDate = new Date('January 1, 2033 00:00:00').getTime();
