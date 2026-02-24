@@ -354,90 +354,123 @@ section { padding: 6rem 0; position: relative; }
   color: var(--white-60); font-style: italic; font-size: 0.8rem;
 }
 
-/* ===== LEGACY WALL ===== */
+/* ===== LEGACY WALL (homepage) ===== */
 #legacy-wall { background: var(--navy); }
-.legacy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
+
+.legacy-hero-stat {
+  text-align: center;
+  margin: 2.5rem 0 3rem;
 }
-.student-card {
+.legacy-big-number {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 8rem);
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.legacy-big-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--white-60);
+  display: block;
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+}
+
+/* Featured graduates row */
+.featured-graduates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 750px;
+  margin: 0 auto 3rem;
+}
+.featured-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
-  border-radius: 6px; padding: 1.5rem 1rem;
-  text-align: center; cursor: pointer;
-  transition: var(--transition);
-  position: relative; overflow: hidden;
+  border-radius: 12px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: featuredFadeIn 0.6s ease forwards;
+  opacity: 0;
 }
-.student-card::before {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+@keyframes featuredFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.featured-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
-  transform: scaleX(0); transition: transform 0.4s ease;
 }
-.student-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: var(--shadow-gold); }
-.student-card:hover::before { transform: scaleX(1); }
-.student-avatar {
-  width: 60px; height: 60px; border-radius: 50%;
+.featured-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
   margin: 0 auto 1rem;
   background: linear-gradient(135deg, var(--navy-light), var(--gold-dim));
-  border: 2px solid var(--glass-border);
+  border: 2px solid var(--gold);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-size: 1.1rem; color: var(--gold);
 }
-.student-name { font-family: var(--font-serif); font-size: 0.95rem; color: var(--white-90); margin-bottom: 0.25rem; }
-.student-emoji { font-size: 0.85rem; }
+.featured-name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--white-90);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+.featured-nickname {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.featured-emojis { font-size: 0.85rem; }
 
-/* ===== MODAL ===== */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 2000;
-  background: rgba(5,12,25,0.92);
-  backdrop-filter: blur(12px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.4s ease;
-  padding: 1rem;
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal {
-  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
-  border: 1px solid var(--glass-border);
-  border-radius: 12px; padding: 3rem;
-  max-width: 500px; width: 100%;
-  position: relative;
-  transform: scale(0.9) translateY(20px);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  max-height: 90vh; overflow-y: auto;
-}
-.modal-overlay.open .modal { transform: scale(1) translateY(0); }
-.modal-close {
-  position: absolute; top: 1.5rem; right: 1.5rem;
-  width: 36px; height: 36px;
-  border: 1px solid var(--glass-border); border-radius: 50%;
-  background: transparent; color: var(--white-60);
-  cursor: pointer; font-size: 1.1rem;
-  display: flex; align-items: center; justify-content: center;
+/* CTA button */
+.legacy-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.5rem;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  cursor: pointer;
   transition: var(--transition);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
-.modal-close:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-.modal-avatar {
-  width: 90px; height: 90px; border-radius: 50%;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--navy-light), var(--gold-dim));
-  border: 3px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 2rem; color: var(--gold);
+.legacy-cta-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
 }
-.modal-name { font-family: var(--font-display); font-size: 1.3rem; text-align: center; color: var(--gold); margin-bottom: 0.5rem; }
-.modal-emojis { text-align: center; font-size: 1.3rem; margin-bottom: 1.5rem; }
-.modal-quote {
-  font-family: var(--font-serif); font-style: italic; font-size: 1.05rem;
-  color: var(--white-90); text-align: center; margin-bottom: 1.5rem;
-  padding: 1rem; border-left: 2px solid var(--gold);
-  background: var(--white-10); border-radius: 0 4px 4px 0;
+.legacy-cta-btn:hover { color: var(--navy); }
+.legacy-cta-btn:hover::before { transform: scaleX(1); }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .featured-graduates { grid-template-columns: 1fr; max-width: 320px; }
+  .legacy-cta-btn { width: 100%; justify-content: center; font-size: 0.72rem; letter-spacing: 2px; }
 }
-.modal-detail { margin-bottom: 1rem; }
-.modal-detail-label { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.25rem; }
-.modal-detail-value { font-family: var(--font-serif); font-size: 1rem; color: var(--white-90); }
+@media (min-width: 601px) and (max-width: 768px) {
+  .featured-graduates { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+}
 
 /* ===== GALLERY ===== */
 #gallery { background: var(--navy-mid); }
@@ -603,386 +636,191 @@ section { padding: 6rem 0; position: relative; }
 #confessions {
   background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
 }
-.confessions-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-}
+.confessions-inner { max-width: 600px; margin: 0 auto; text-align: center; }
 .confessions-subtext {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--white-60);
-  line-height: 1.8;
-  margin-bottom: 3rem;
+  font-family: var(--font-serif); font-style: italic; font-size: 1.05rem;
+  color: var(--white-60); line-height: 1.8; margin-bottom: 2.5rem; padding: 0 0.5rem;
 }
-
-/* Form layout */
-.confession-form {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.confession-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  position: relative;
-}
-.confession-label {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.confession-label span {
-  color: var(--white-60);
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 0.75rem;
-}
+.confession-form { text-align: left; display: flex; flex-direction: column; gap: 1.25rem; }
+.confession-field { display: flex; flex-direction: column; gap: 0.5rem; position: relative; }
+.confession-label { font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); }
+.confession-label span { color: var(--white-60); text-transform: none; letter-spacing: 0; font-size: 0.72rem; }
 .confession-input {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  color: var(--white);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  padding: 0.9rem 1.2rem;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.3s;
-  width: 100%;
+  background: var(--glass); border: 1px solid var(--glass-border); color: var(--white);
+  font-family: var(--font-body); font-size: 0.95rem; padding: 0.85rem 1rem;
+  border-radius: 8px; outline: none; transition: border-color 0.3s; width: 100%; -webkit-appearance: none;
 }
 .confession-input:focus { border-color: var(--gold); }
-.confession-input::placeholder { color: var(--white-60); font-style: italic; }
-
+.confession-input::placeholder { color: var(--white-60); font-style: italic; font-size: 0.85rem; }
 .confession-textarea {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  color: var(--white);
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  padding: 1.1rem 1.2rem;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.3s;
-  resize: vertical;
-  min-height: 150px;
-  line-height: 1.8;
-  width: 100%;
+  background: var(--glass); border: 1px solid var(--glass-border); color: var(--white);
+  font-family: var(--font-serif); font-size: 1rem; padding: 1rem; border-radius: 8px;
+  outline: none; transition: border-color 0.3s; resize: none; min-height: 140px;
+  line-height: 1.8; width: 100%; -webkit-appearance: none;
 }
 .confession-textarea:focus { border-color: var(--gold); }
-.confession-textarea::placeholder { color: var(--white-60); font-style: italic; }
-
+.confession-textarea::placeholder { color: var(--white-60); font-style: italic; font-size: 0.9rem; }
 .confession-charcount {
-  position: absolute;
-  bottom: 0.6rem;
-  right: 0.9rem;
-  font-size: 0.65rem;
-  color: var(--white-60);
-  pointer-events: none;
+  position: absolute; bottom: 0.6rem; right: 0.75rem; font-size: 0.62rem;
+  color: var(--white-60); pointer-events: none; background: var(--navy-mid);
+  padding: 0.1rem 0.3rem; border-radius: 3px;
 }
-
-/* Category tags */
 .confession-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .tag-btn {
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--glass-border);
-  background: transparent;
-  color: var(--white-60);
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: var(--transition);
+  padding: 0.4rem 0.9rem; border: 1px solid var(--glass-border); background: transparent;
+  color: var(--white-60); font-family: var(--font-body); font-size: 0.72rem;
+  border-radius: 30px; cursor: pointer; transition: var(--transition); -webkit-tap-highlight-color: transparent;
 }
-.tag-btn:hover { border-color: var(--gold); color: var(--gold); }
+.tag-btn:hover, .tag-btn:active { border-color: var(--gold); color: var(--gold); }
 .tag-btn.active { background: rgba(201,168,76,0.15); border-color: var(--gold); color: var(--gold); }
-
-/* Submit button */
 .confession-submit {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: 100%;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-  color: var(--navy);
-  border: none;
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: var(--transition);
-  margin-top: 0.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+  color: var(--navy); border: none; font-family: var(--font-display); font-size: 0.8rem;
+  letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; border-radius: 8px;
+  cursor: pointer; transition: var(--transition); margin-top: 0.25rem; -webkit-tap-highlight-color: transparent;
 }
-.confession-submit:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
-.confession-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-.submit-icon { font-size: 1.1rem; }
-
-/* Success state */
+.confession-submit:active { transform: scale(0.98); }
+.confession-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 .confession-success {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 3rem 2rem;
-  background: var(--glass);
-  border: 1px solid var(--gold-dim);
-  border-radius: 12px;
-  animation: fadeUp 0.6s ease forwards;
+  display: none; flex-direction: column; align-items: center; text-align: center;
+  padding: 2.5rem 1.5rem; background: var(--glass); border: 1px solid var(--gold-dim);
+  border-radius: 12px; animation: fadeUp 0.6s ease forwards;
 }
-.success-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  animation: floatIcon 3s ease-in-out infinite;
-}
-@keyframes floatIcon {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-}
-.success-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); margin-bottom: 0.75rem; }
-.success-text { font-family: var(--font-serif); font-style: italic; color: var(--white-60); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.success-icon { font-size: 2.5rem; margin-bottom: 1rem; animation: floatIcon 3s ease-in-out infinite; }
+@keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.success-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); margin-bottom: 0.75rem; }
+.success-text { font-family: var(--font-serif); font-style: italic; color: var(--white-60); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
 .confession-reset {
-  padding: 0.6rem 1.5rem;
-  border: 1px solid var(--gold);
-  background: transparent;
-  color: var(--gold);
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: var(--transition);
+  padding: 0.6rem 1.5rem; border: 1px solid var(--gold); background: transparent; color: var(--gold);
+  font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  border-radius: 4px; cursor: pointer; transition: var(--transition);
 }
 .confession-reset:hover { background: var(--gold); color: var(--navy); }
 
-/* ===== CONFESSION WALL (public display) ===== */
-.confession-wall-section {
-  margin-top: 5rem;
-  text-align: left;
+/* Bottom buttons */
+.confession-bottom-row { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+.read-wall-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 0.9rem 1rem; border: 1px solid var(--gold); background: transparent; color: var(--gold);
+  font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+  border-radius: 8px; cursor: pointer; transition: var(--transition); -webkit-tap-highlight-color: transparent;
 }
-.confession-wall-title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--gold);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-.confession-wall-sub {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--white-60);
-  text-align: center;
-  margin-bottom: 2rem;
-}
-#confessionWall {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-}
-.confession-card {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-.confession-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
-}
-.confession-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--shadow-gold); }
-.confession-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.confession-cat {
-  font-size: 0.75rem;
-  background: rgba(201,168,76,0.12);
-  border: 1px solid var(--gold-dim);
-  color: var(--gold);
-  padding: 0.2rem 0.7rem;
-  border-radius: 20px;
-  letter-spacing: 1px;
-}
-.confession-date {
-  font-size: 0.65rem;
-  color: var(--white-60);
-  letter-spacing: 1px;
-}
-.confession-to {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  color: var(--gold-light);
-  margin-bottom: 0.75rem;
-  letter-spacing: 1px;
-}
-.confession-body {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--white-90);
-  line-height: 1.8;
-  margin-bottom: 1rem;
-}
-.confession-anon {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  color: var(--white-60);
-  text-align: right;
-}
-.wall-loading {
-  text-align: center;
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--white-60);
-  padding: 3rem;
-  grid-column: 1 / -1;
-}
-.wall-empty {
-  text-align: center;
-  grid-column: 1 / -1;
-  padding: 3rem;
-  color: var(--white-60);
-}
-.wall-empty span { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
-.wall-empty p { font-family: var(--font-serif); font-style: italic; }
-
-/* Admin trigger button */
-.admin-trigger-wrap {
-  text-align: center;
-  margin-top: 3rem;
-}
+.read-wall-btn:hover { background: rgba(201,168,76,0.1); }
 .admin-trigger-btn {
-  padding: 0.5rem 1.2rem;
-  border: 1px solid var(--glass-border);
-  background: transparent;
-  color: var(--white-60);
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: var(--transition);
-  font-family: var(--font-body);
+  padding: 0.9rem 1.2rem; border: 1px solid var(--glass-border); background: transparent;
+  color: var(--white-60); font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 2px;
+  text-transform: uppercase; border-radius: 8px; cursor: pointer; transition: var(--transition);
 }
 .admin-trigger-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-/* ===== ADMIN PANEL ===== */
+/* Drawer overlay */
+.confession-drawer-overlay {
+  position: fixed; inset: 0; z-index: 4000; background: rgba(0,0,0,0.78);
+  backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.confession-drawer-overlay.open { opacity: 1; pointer-events: all; }
+.confession-drawer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 4001;
+  background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+  border-top: 1px solid var(--gold-dim); border-radius: 20px 20px 0 0;
+  max-height: 85vh; display: flex; flex-direction: column;
+  transform: translateY(100%); transition: transform 0.45s cubic-bezier(0.34, 1.1, 0.64, 1);
+}
+.confession-drawer-overlay.open .confession-drawer { transform: translateY(0); }
+.drawer-handle { width: 40px; height: 4px; background: var(--glass-border); border-radius: 2px; margin: 1rem auto 0; flex-shrink: 0; }
+.drawer-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem 0.75rem; border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0; gap: 1rem;
+}
+.drawer-title { font-family: var(--font-display); font-size: 0.95rem; color: var(--gold); letter-spacing: 2px; }
+.drawer-count {
+  font-size: 0.68rem; color: var(--white-60); background: var(--glass);
+  padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--glass-border); white-space: nowrap;
+}
+.drawer-close {
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--glass-border);
+  background: transparent; color: var(--white-60); font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: var(--transition);
+  flex-shrink: 0; margin-left: auto;
+}
+.drawer-close:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+.drawer-body {
+  flex: 1; overflow-y: auto; padding: 1.25rem 1.25rem 2rem; -webkit-overflow-scrolling: touch;
+}
+.drawer-body::-webkit-scrollbar { width: 4px; }
+.drawer-body::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* Confession cards */
+.confession-card {
+  background: var(--glass); border: 1px solid var(--glass-border); border-radius: 10px;
+  padding: 1.1rem; margin-bottom: 0.9rem; position: relative; overflow: hidden;
+}
+.confession-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.confession-card:last-child { margin-bottom: 0; }
+.confession-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.4rem; }
+.confession-cat { font-size: 0.68rem; background: rgba(201,168,76,0.1); border: 1px solid var(--gold-dim); color: var(--gold); padding: 0.18rem 0.6rem; border-radius: 20px; }
+.confession-date { font-size: 0.62rem; color: var(--white-60); }
+.confession-to { font-size: 0.72rem; color: var(--gold-light); margin-bottom: 0.5rem; }
+.confession-body { font-family: var(--font-serif); font-style: italic; font-size: 0.98rem; color: var(--white-90); line-height: 1.75; margin-bottom: 0.6rem; }
+.confession-anon { font-size: 0.62rem; letter-spacing: 2px; color: var(--white-60); text-align: right; }
+.wall-loading, .wall-empty { text-align: center; padding: 3rem 1rem; color: var(--white-60); font-family: var(--font-serif); font-style: italic; }
+.wall-empty span { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+
+/* Admin panel */
 #adminPanel {
-  display: none;
-  margin-top: 2rem;
-  background: rgba(10,22,40,0.95);
-  border: 1px solid var(--gold-dim);
-  border-radius: 12px;
-  padding: 2rem;
+  display: none; margin-top: 1.5rem; background: rgba(10,22,40,0.95);
+  border: 1px solid var(--gold-dim); border-radius: 12px; padding: 1.5rem;
 }
-.admin-panel-title {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--gold);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-.admin-panel-sub {
-  font-size: 0.75rem;
-  color: var(--white-60);
-  margin-bottom: 1.5rem;
-}
+.admin-panel-title { font-family: var(--font-display); font-size: 0.9rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.4rem; }
+.admin-panel-sub { font-size: 0.72rem; color: var(--white-60); margin-bottom: 1.25rem; line-height: 1.6; }
 .admin-refresh-btn {
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--gold-dim);
-  background: transparent;
-  color: var(--gold);
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-  transition: var(--transition);
-  font-family: var(--font-body);
+  padding: 0.4rem 1rem; border: 1px solid var(--gold-dim); background: transparent; color: var(--gold);
+  font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+  border-radius: 4px; margin-bottom: 1.25rem; transition: var(--transition); font-family: var(--font-body);
 }
 .admin-refresh-btn:hover { background: var(--gold); color: var(--navy); }
 #adminList { display: flex; flex-direction: column; gap: 1rem; }
-.admin-card {
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  transition: opacity 0.3s;
+.admin-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 8px; padding: 1.1rem; transition: opacity 0.3s; }
+.admin-card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.4rem; }
+.admin-card-message { font-family: var(--font-serif); font-style: italic; color: var(--white-90); font-size: 0.95rem; line-height: 1.7; margin: 0.6rem 0; }
+.admin-card-actions { display: flex; gap: 0.6rem; margin-top: 0.75rem; flex-wrap: wrap; }
+.admin-approve-btn, .admin-reject-btn {
+  flex: 1; padding: 0.5rem 0.75rem; font-size: 0.68rem; letter-spacing: 1px;
+  text-transform: uppercase; cursor: pointer; border-radius: 6px; transition: var(--transition);
+  text-align: center; font-family: var(--font-body); min-width: 90px;
 }
-.admin-card-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.admin-card-message {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--white-90);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin: 0.75rem 0;
-}
-.admin-card-actions { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
-.admin-approve-btn {
-  padding: 0.4rem 1rem;
-  border: 1px solid #27ae60;
-  background: transparent;
-  color: #27ae60;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: var(--transition);
-}
+.admin-approve-btn { border: 1px solid #27ae60; background: transparent; color: #27ae60; }
 .admin-approve-btn:hover { background: #27ae60; color: var(--white); }
-.admin-reject-btn {
-  padding: 0.4rem 1rem;
-  border: 1px solid #e74c3c;
-  background: transparent;
-  color: #e74c3c;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: var(--transition);
-}
+.admin-reject-btn { border: 1px solid #e74c3c; background: transparent; color: #e74c3c; }
 .admin-reject-btn:hover { background: #e74c3c; color: var(--white); }
 
-/* ===== MOBILE ===== */
+/* Mobile */
 @media (max-width: 600px) {
-  #confessionWall { grid-template-columns: 1fr; }
-  .confession-tags { gap: 0.4rem; }
-  .tag-btn { font-size: 0.7rem; padding: 0.35rem 0.8rem; }
-  .confession-submit { font-size: 0.75rem; letter-spacing: 2px; }
+  .confessions-subtext { font-size: 0.95rem; }
+  .confession-bottom-row { flex-direction: column; }
+  .read-wall-btn, .admin-trigger-btn { width: 100%; justify-content: center; }
+  .confession-drawer { max-height: 88vh; border-radius: 16px 16px 0 0; }
+  .drawer-body { padding: 1rem 1rem 2rem; }
   .admin-card-actions { flex-direction: column; }
-  .admin-approve-btn, .admin-reject-btn { width: 100%; text-align: center; }
+  .admin-approve-btn, .admin-reject-btn { width: 100%; }
+}
+
+/* Desktop — centered modal */
+@media (min-width: 768px) {
+  .confession-drawer-overlay { display: flex; align-items: center; justify-content: center; }
+  .confession-drawer {
+    position: relative; bottom: auto; width: 100%; max-width: 580px; max-height: 78vh;
+    border-radius: 16px; border: 1px solid var(--gold-dim);
+    transform: scale(0.92) translateY(16px); opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.1, 0.64, 1), opacity 0.35s ease;
+  }
+  .confession-drawer-overlay.open .confession-drawer { transform: scale(1) translateY(0); opacity: 1; }
+  .drawer-handle { display: none; }
 }
 
 /* ===== TIME CAPSULE ===== */

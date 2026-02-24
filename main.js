@@ -7,22 +7,22 @@
 /* ===== DATA ===== */
 
 const students = [
-  { name: "Adaeze Okonkwo",    initials: "AO", emojis: "👑✨📚", quote: "Education is not the filling of a pail, but the lighting of a fire.",          memory: "The night we finished our group thesis at 4am and someone bought jollof rice for the whole team.",                            ambition: "Become Nigeria's Minister of Education by 40." },
-  { name: "Chukwuemeka Eze",   initials: "CE", emojis: "😂🎯🏆", quote: "I came for a degree, I stayed for the people.",                                  memory: "Accidentally calling Dr. Adeyemi 'dad' in the middle of a lecture.",                                                       ambition: "Build Africa's largest EdTech startup." },
-  { name: "Fatima Al-Hassan",  initials: "FA", emojis: "💫🕊️📖", quote: "Stillness is where clarity lives.",                                              memory: "Leading the faculty cultural night performance — that standing ovation still lives in my chest.",                           ambition: "Found an international school network across West Africa." },
-  { name: "Oluwaseun Badmus",  initials: "OB", emojis: "🎤🔥😎", quote: "Be the energy you want to attract.",                                             memory: "That infamous 300-level field trip to Abuja — what happens on the bus, stays on the bus.",                                  ambition: "Professor of Educational Leadership at a top university." },
-  { name: "Blessing Nwachukwu",initials: "BN", emojis: "🌸💪🎓", quote: "She believed she could, so she did.",                                            memory: "Defending my final year project and seeing my mom cry tears of joy from the back of the room.",                             ambition: "Establish a girls' scholarship foundation." },
-  { name: "Ibrahim Musa",      initials: "IM", emojis: "📊🧠⚡", quote: "Data is the new curriculum.",                                                    memory: "The time I corrected a visiting lecturer's statistics and he actually thanked me.",                                         ambition: "Lead educational reform policy at the national level." },
-  { name: "Chidinma Okeke",    initials: "CO", emojis: "🎨🌈✍️", quote: "Create the world you want to teach in.",                                         memory: "Organizing the department's first art-based learning exhibition.",                                                          ambition: "Creative director of an innovative secondary school." },
-  { name: "Tunde Abiola",      initials: "TA", emojis: "⚽🤝😄", quote: "Football taught me more about management than any textbook.",                     memory: "Winning the faculty football tournament — coach cried. We all did.",                                                        ambition: "Sports education consultant and team owner." },
-  { name: "Amaka Igwe",        initials: "AI", emojis: "📱💡🌍", quote: "The future belongs to digital educators.",                                        memory: "Creating the department's first Instagram page that hit 10k followers.",                                                    ambition: "UNESCO education technology advisor." },
-  { name: "Yakubu Sani",       initials: "YS", emojis: "🏔️📜🔑", quote: "Patience is the foundation of all mastery.",                                    memory: "Teaching fellow students during the ASUU strike — the unofficial tutoring sessions.",                                       ambition: "Head of curriculum development for Nigeria's northern states." },
-  { name: "Ngozi Uche",        initials: "NU", emojis: "💼👠🌟", quote: "Excellence is not optional — it's my default.",                                  memory: "Being appointed Student Union Faculty Representative and negotiating the exam timetable change.",                            ambition: "CEO of an educational consulting firm." },
-  { name: "Emeka Okafor",      initials: "EO", emojis: "🎵📚🌙", quote: "Music and knowledge are the same song.",                                         memory: "The candlelight night vigil we held before final exams — someone brought a guitar.",                                        ambition: "Develop music-integrated educational curricula." },
-  { name: "Aisha Bello",       initials: "AB", emojis: "🌺🤲✨", quote: "Service is the highest form of leadership.",                                      memory: "The community service project we ran in Year 3 — teaching 200 children to read.",                                          ambition: "Establish a community learning center in her village." },
-  { name: "Damilola Fasanya",  initials: "DF", emojis: "👨‍💻🚀💬", quote: "Every system can be reimagined.",                                              memory: "Coding the department's first student portal as a personal project — the HOD was stunned.",                                 ambition: "Build EdTech products that serve 10 million learners." },
-  { name: "Kemi Adeyemi",      initials: "KA", emojis: "📸🎬🌸", quote: "Document everything. Legacy lives in photos.",                                   memory: "Being the unofficial class photographer for four years — I have 12,000 photos of this department.",                        ambition: "Educational documentary filmmaker." },
-  { name: "Seun Olawale",      initials: "SO", emojis: "📐🏛️🎯", quote: "Discipline is the bridge between goals and accomplishment.",                    memory: "Scoring the highest mark in the History of Education course — 94%.",                                                       ambition: "Academic at a world-ranked university." },
+  { name: "Adaeze Okonkwo",     nickname: "Ada",       initials: "AO", emojis: "👑✨📚", quote: "...", memory: "...", ambition: "..." },
+  { name: "Chukwuemeka Eze",    nickname: "Chuks",     initials: "CE", emojis: "😂🎯🏆", quote: "...", memory: "...", ambition: "..." },
+  { name: "Fatima Al-Hassan",   nickname: "Fati",      initials: "FA", emojis: "💫🕊️📖", quote: "...", memory: "...", ambition: "..." },
+  { name: "Oluwaseun Badmus",   nickname: "Seun B",    initials: "OB", emojis: "🎤🔥😎", quote: "...", memory: "...", ambition: "..." },
+  { name: "Blessing Nwachukwu", nickname: "Blessings", initials: "BN", emojis: "🌸💪🎓", quote: "...", memory: "...", ambition: "..." },
+  { name: "Ibrahim Musa",       nickname: "Ibro",      initials: "IM", emojis: "📊🧠⚡", quote: "...", memory: "...", ambition: "..." },
+  { name: "Chidinma Okeke",     nickname: "Chidi",     initials: "CO", emojis: "🎨🌈✍️", quote: "...", memory: "...", ambition: "..." },
+  { name: "Tunde Abiola",       nickname: "T-Boy",     initials: "TA", emojis: "⚽🤝😄", quote: "...", memory: "...", ambition: "..." },
+  { name: "Amaka Igwe",         nickname: "Maka",      initials: "AI", emojis: "📱💡🌍", quote: "...", memory: "...", ambition: "..." },
+  { name: "Yakubu Sani",        nickname: "Yaks",      initials: "YS", emojis: "🏔️📜🔑", quote: "...", memory: "...", ambition: "..." },
+  { name: "Ngozi Uche",         nickname: "Ngo",       initials: "NU", emojis: "💼👠🌟", quote: "...", memory: "...", ambition: "..." },
+  { name: "Emeka Okafor",       nickname: "Emzy",      initials: "EO", emojis: "🎵📚🌙", quote: "...", memory: "...", ambition: "..." },
+  { name: "Aisha Bello",        nickname: "Aish",      initials: "AB", emojis: "🌺🤲✨", quote: "...", memory: "...", ambition: "..." },
+  { name: "Damilola Fasanya",   nickname: "Dami",      initials: "DF", emojis: "👨‍💻🚀💬", quote: "...", memory: "...", ambition: "..." },
+  { name: "Kemi Adeyemi",       nickname: "Kemz",      initials: "KA", emojis: "📸🎬🌸", quote: "...", memory: "...", ambition: "..." },
+  { name: "Seun Olawale",       nickname: "The Prof",  initials: "SO", emojis: "📐🏛️🎯", quote: "...", memory: "...", ambition: "..." },
 ];
 
 const galleryItems = [
@@ -133,43 +133,75 @@ function toggleYear(el) {
   if (!isOpen) mem.classList.add('open');
 }
 
-/* ===== LEGACY WALL ===== */
-const legacyGrid = document.getElementById('legacyGrid');
+   
+ 
 
-students.forEach((s, i) => {
-  const card = document.createElement('div');
-  card.className = 'student-card reveal';
-  card.style.transitionDelay = (i % 8 * 0.05) + 's';
-  card.innerHTML = `
-    <div class="student-avatar">${s.initials}</div>
-    <div class="student-name">${s.name}</div>
-    <div class="student-emoji">${s.emojis}</div>
-  `;
-  card.addEventListener('click', () => openModal(s));
-  legacyGrid.appendChild(card);
-  observer.observe(card);
-});
+/* ===== LEGACY WALL — HOMEPAGE FEATURED ===== */
 
-/* ===== MODAL ===== */
-function openModal(s) {
-  document.getElementById('modalAvatar').textContent  = s.initials;
-  document.getElementById('modalName').textContent    = s.name;
-  document.getElementById('modalEmojis').textContent  = s.emojis;
-  document.getElementById('modalQuote').textContent   = '"' + s.quote + '"';
-  document.getElementById('modalMemory').textContent  = s.memory;
-  document.getElementById('modalAmbition').textContent = s.ambition;
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+// Pick 3 random graduates to feature (rotates on each page load)
+function renderFeaturedGrads() {
+  const container = document.getElementById('featuredGrads');
+  if (!container) return;
+
+  const shuffled = [...students].sort(() => Math.random() - 0.5).slice(0, 3);
+
+  container.innerHTML = shuffled.map((s, i) => `
+    <div class="featured-card" style="animation-delay: ${i * 0.15}s">
+      <div class="featured-avatar">${s.initials}</div>
+      <div class="featured-name">${s.name}</div>
+      <div class="featured-nickname">${s.nickname || 'Class of 2028'}</div>
+      <div class="featured-emojis">${s.emojis}</div>
+    </div>
+  `).join('');
 }
 
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+renderFeaturedGrads();
+
+// Animated counter for the big number
+function animateLegacyCount() {
+  const el = document.getElementById('legacyCount');
+  if (!el) return;
+
+  const target = 127;
+  let current  = 0;
+  const step   = target / (2000 / 16);
+
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !el.dataset.counted) {
+        el.dataset.counted = true;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = Math.floor(current);
+          if (current >= target) clearInterval(timer);
+        }, 16);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  countObs.observe(el);
 }
 
-document.getElementById('modalOverlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeModal();
-});
+animateLegacyCount();
+
+// Smooth fade-out transition to archive page
+const archiveLink = document.getElementById('archiveLink');
+if (archiveLink) {
+  archiveLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.body.style.opacity    = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    setTimeout(() => { window.location.href = this.href; }, 400);
+  });
+}
+
+
+ 
+
+ 
+
+ 
+
 
 /* ===== GALLERY ===== */
 const galleryGrid = document.getElementById('galleryGrid');
@@ -231,8 +263,7 @@ function closeLightbox() {
 /* ===== AWARDS ===== */
 /* ===== AWARDS ===== */
 const awardsGrid = document.getElementById('awardsGrid');
-const votedAwards = {};
-const votes = awards.map(a => a.nominees.map(() => 0));
+ 
 
 awards.forEach((a, awardIndex) => {
   const nomineesHTML = a.nominees.map((name, nomineeIndex) => `
@@ -267,41 +298,12 @@ awards.forEach((a, awardIndex) => {
   observer.observe(div);
 });
 
-function voteFor(awardIndex, nomineeIndex) {
-  if (votedAwards[awardIndex] !== undefined) return;
+ 
+  
 
-  votedAwards[awardIndex] = nomineeIndex;
-  votes[awardIndex][nomineeIndex]++;
+    
 
-  const total = votes[awardIndex].reduce((sum, v) => sum + v, 0);
-
-  awards[awardIndex].nominees.forEach((_, ni) => {
-    const count   = votes[awardIndex][ni];
-    const pct     = total > 0 ? Math.round((count / total) * 100) : 0;
-    const btn     = document.getElementById(`vbtn-${awardIndex}-${ni}`);
-    const countEl = document.getElementById(`count-${awardIndex}-${ni}`);
-    const bar     = document.getElementById(`bar-${awardIndex}-${ni}`);
-    const row     = document.getElementById(`nominee-${awardIndex}-${ni}`);
-
-    countEl.textContent = `${count} vote${count !== 1 ? 's' : ''} · ${pct}%`;
-    bar.style.width = pct + '%';
-
-    if (ni === nomineeIndex) {
-      btn.textContent = '✓ Voted';
-      btn.classList.add('voted');
-      row.classList.add('nominee-voted');
-    } else {
-      btn.textContent = 'Vote';
-      btn.disabled = true;
-      btn.classList.add('vote-disabled');
-    }
-  });
-
-  const maxVotes  = Math.max(...votes[awardIndex]);
-  const leaderIdx = votes[awardIndex].indexOf(maxVotes);
-  document.getElementById(`winner-label-${awardIndex}`).style.display = 'block';
-  document.getElementById(`winner-name-${awardIndex}`).textContent = awards[awardIndex].nominees[leaderIdx];
-}
+ 
 
 /* ===== COUNTDOWN TIMER ===== */
 function updateCountdown() {

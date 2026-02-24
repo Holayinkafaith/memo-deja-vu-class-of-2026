@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Archive – Memo De Javu 2028</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== PAGE TRANSITION ===== */
+    body { opacity: 0; transition: opacity 0.5s ease; }
+    body.loaded { opacity: 1; }
+
+    /* ===== ARCHIVE PAGE ===== */
+    .archive-page {
+      min-height: 100vh;
+      background: var(--navy);
+      padding-top: 0;
+    }
+
+    /* ===== ARCHIVE HEADER ===== */
+    .archive-header {
+      background: linear-gradient(180deg, #050d1a 0%, var(--navy) 100%);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--glass-border);
+      position: relative;
+    }
+    .back-btn {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--white-60);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      text-decoration: none;
+    }
+    .back-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .archive-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .archive-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--white);
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .archive-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--white-60);
+      margin-bottom: 1.5rem;
+    }
+    .archive-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .archive-stat {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-60);
+    }
+    .archive-stat span {
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ===== CONTROLS ===== */
+    .archive-controls {
+      padding: 2rem 2rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Search bar */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--white-60);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .archive-search {
+      width: 100%;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.3s;
+      -webkit-appearance: none;
+    }
+    .archive-search:focus { border-color: var(--gold); }
+    .archive-search::placeholder { color: var(--white-60); }
+
+    /* Alphabet bar */
+    .alphabet-bar {
+      display: flex;
+      gap: 0.3rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .alphabet-bar::-webkit-scrollbar { display: none; }
+    .alpha-btn {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--glass-border);
+      background: transparent;
+      color: var(--white-60);
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .alpha-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .alpha-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .alpha-btn.inactive { opacity: 0.25; cursor: default; }
+
+    /* Top row — results count + surprise btn */
+    .archive-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .results-count {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      color: var(--white-60);
+    }
+    .results-count span { color: var(--gold); }
+    .surprise-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      background: transparent;
+      color: var(--white-60);
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .surprise-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ===== GRADUATE GRID ===== */
+    .archive-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .graduate-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .grad-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 1.25rem 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.6rem;
+    }
+    .grad-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .grad-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--shadow-gold); }
+    .grad-card:hover::after { transform: scaleX(1); }
+    .grad-avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-light), var(--gold-dim));
+      border: 2px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1rem; color: var(--gold);
+      flex-shrink: 0;
+    }
+    .grad-card:hover .grad-avatar { border-color: var(--gold); }
+    .grad-name {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--white-90);
+      line-height: 1.3;
+    }
+    .grad-nickname {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .grad-view {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-60);
+      margin-top: auto;
+      transition: color 0.3s;
+    }
+    .grad-card:hover .grad-view { color: var(--gold); }
+
+    /* Load more */
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .load-more-btn {
+      padding: 0.8rem 2.5rem;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .load-more-btn:hover { background: var(--gold); color: var(--navy); }
+
+    /* No results */
+    .no-results {
+      text-align: center;
+      padding: 4rem 1rem;
+      grid-column: 1 / -1;
+      color: var(--white-60);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* ===== PROFILE DRAWER ===== */
+    .profile-overlay {
+      position: fixed; inset: 0; z-index: 5000;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .profile-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* Desktop: slides in from right */
+    .profile-drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 420px;
+      background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+      border-left: 1px solid var(--gold-dim);
+      display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.34, 1.1, 0.64, 1);
+      z-index: 5001;
+      overflow: hidden;
+    }
+    .profile-overlay.open .profile-drawer { transform: translateX(0); }
+
+    .profile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--glass-border);
+      flex-shrink: 0;
+    }
+    .profile-drawer-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white-60);
+    }
+    .profile-drawer-close {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--glass-border); background: transparent;
+      color: var(--white-60); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .profile-drawer-close:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+    .profile-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem 1.5rem 3rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .profile-drawer-body::-webkit-scrollbar { width: 4px; }
+    .profile-drawer-body::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* Profile content */
+    .profile-avatar-lg {
+      width: 90px; height: 90px; border-radius: 50%;
+      margin: 0 auto 0.75rem;
+      background: linear-gradient(135deg, var(--navy-light), var(--gold-dim));
+      border: 3px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 2rem; color: var(--gold);
+      box-shadow: 0 0 30px rgba(201,168,76,0.25);
+    }
+    .profile-name-lg {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 0.2rem;
+      letter-spacing: 1px;
+    }
+    .profile-nickname-lg {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--white-60);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .profile-emojis-lg {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .profile-quote-lg {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--white-90);
+      text-align: center;
+      line-height: 1.8;
+      padding: 1rem 1.25rem;
+      border-left: 2px solid var(--gold);
+      background: var(--white-10);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1.5rem;
+    }
+    .profile-section {
+      margin-bottom: 1.25rem;
+      padding: 1rem 1.1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+    }
+    .profile-section-label {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .profile-section-value {
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      color: var(--white-90);
+      line-height: 1.7;
+    }
+    .profile-award-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--gold-dim);
+      border-radius: 30px;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Mobile: drawer slides up from bottom */
+    @media (max-width: 767px) {
+      .graduate-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .grad-card { flex-direction: row; text-align: left; padding: 1rem; gap: 1rem; }
+      .grad-view { display: none; }
+      .archive-controls { padding: 1.5rem 1rem 0.5rem; }
+      .archive-body { padding: 0 1rem 4rem; }
+      .archive-header { padding: 4rem 1.5rem 2rem; }
+      .back-btn { top: 1rem; left: 1rem; padding: 0.4rem 0.75rem; font-size: 0.62rem; }
+
+      .profile-drawer {
+        top: auto; right: 0; left: 0; bottom: 0;
+        width: 100%;
+        height: 90vh;
+        border-left: none;
+        border-top: 1px solid var(--gold-dim);
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+      }
+      .profile-overlay.open .profile-drawer { transform: translateY(0); }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .graduate-grid { grid-template-columns: repeat(3, 1fr); }
+      .profile-drawer { width: 380px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="archive-page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="archive-header">
+    <a class="back-btn" href="index.html" id="backBtn">← Back to Main Site</a>
+    <div class="archive-eyebrow">Department of Educational Management · 2028</div>
+    <h1 class="archive-title">The Class Archive</h1>
+    <p class="archive-subtitle">Every name. Every story. Forever preserved.</p>
+    <div class="archive-stats">
+      <div class="archive-stat"><span id="totalCount">0</span>Graduates</div>
+      <div class="archive-stat"><span>2024</span>Enrolled</div>
+      <div class="archive-stat"><span>2028</span>Graduated</div>
+    </div>
+  </div>
+
+  <!-- ===== CONTROLS ===== -->
+  <div class="archive-controls">
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        class="archive-search"
+        id="archiveSearch"
+        placeholder="Search a graduate by name or nickname..."
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Alphabet bar -->
+    <div class="alphabet-bar" id="alphabetBar"></div>
+
+    <!-- Top row -->
+    <div class="archive-top-row">
+      <div class="results-count">Showing <span id="resultsCount">0</span> graduates</div>
+      <button class="surprise-btn" onclick="surpriseMe()">🎲 Surprise Me</button>
+    </div>
+
+  </div>
+
+  <!-- ===== GRID ===== -->
+  <div class="archive-body">
+    <div class="graduate-grid" id="graduateGrid"></div>
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+      <button class="load-more-btn" onclick="loadMore()">Load More</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== PROFILE DRAWER ===== -->
+<div class="profile-overlay" id="profileOverlay">
+  <div class="profile-drawer" id="profileDrawer">
+    <div class="profile-drawer-header">
+      <span class="profile-drawer-label">Graduate Profile</span>
+      <button class="profile-drawer-close" onclick="closeProfile()">✕</button>
+    </div>
+    <div class="profile-drawer-body" id="profileBody"></div>
+  </div>
+</div>
+
+<script>
+/* ===== GRADUATE DATA ===== */
+const graduates = [
+  { name: "Adaeze Okonkwo",     nickname: "Ada",      initials: "AO", emojis: "👑✨📚", quote: "Education is not the filling of a pail, but the lighting of a fire.",         memory: "The night we finished our group thesis at 4am and someone bought jollof rice for the whole team.",               ambition: "Become Nigeria's Minister of Education by 40.",          award: "Most Beloved"           },
+  { name: "Chukwuemeka Eze",    nickname: "Chuks",    initials: "CE", emojis: "😂🎯🏆", quote: "I came for a degree, I stayed for the people.",                               memory: "Accidentally calling Dr. Adeyemi 'dad' in the middle of a lecture.",                                           ambition: "Build Africa's largest EdTech startup.",                 award: "Department Comedian"    },
+  { name: "Fatima Al-Hassan",   nickname: "Fati",     initials: "FA", emojis: "💫🕊️📖", quote: "Stillness is where clarity lives.",                                           memory: "Leading the faculty cultural night performance — that standing ovation still lives in my chest.",               ambition: "Found an international school network across West Africa.", award: "Peacemaker"            },
+  { name: "Oluwaseun Badmus",   nickname: "Seun B",   initials: "OB", emojis: "🎤🔥😎", quote: "Be the energy you want to attract.",                                           memory: "That infamous 300-level field trip to Abuja — what happens on the bus, stays on the bus.",                    ambition: "Professor of Educational Leadership at a top university.", award: "Motivational Speaker"  },
+  { name: "Blessing Nwachukwu", nickname: "Blessings",initials: "BN", emojis: "🌸💪🎓", quote: "She believed she could, so she did.",                                          memory: "Defending my final year project and seeing my mom cry tears of joy from the back of the room.",               ambition: "Establish a girls' scholarship foundation.",             award: "Most Beloved"           },
+  { name: "Ibrahim Musa",       nickname: "Ibro",     initials: "IM", emojis: "📊🧠⚡", quote: "Data is the new curriculum.",                                                  memory: "The time I corrected a visiting lecturer's statistics and he actually thanked me.",                             ambition: "Lead educational reform policy at the national level.",  award: "Silent Genius"          },
+  { name: "Chidinma Okeke",     nickname: "Chidi",    initials: "CO", emojis: "🎨🌈✍️", quote: "Create the world you want to teach in.",                                       memory: "Organizing the department's first art-based learning exhibition.",                                             ambition: "Creative director of an innovative secondary school.",   award: "Motivational Speaker"   },
+  { name: "Tunde Abiola",       nickname: "T-Boy",    initials: "TA", emojis: "⚽🤝😄", quote: "Football taught me more about management than any textbook.",                   memory: "Winning the faculty football tournament — coach cried. We all did.",                                           ambition: "Sports education consultant and team owner.",            award: "Always MIA"             },
+  { name: "Amaka Igwe",         nickname: "Maka",     initials: "AI", emojis: "📱💡🌍", quote: "The future belongs to digital educators.",                                      memory: "Creating the department's first Instagram page that hit 10k followers.",                                       ambition: "UNESCO education technology advisor.",                   award: "Future Billionaire"     },
+  { name: "Yakubu Sani",        nickname: "Yaks",     initials: "YS", emojis: "🏔️📜🔑", quote: "Patience is the foundation of all mastery.",                                  memory: "Teaching fellow students during the ASUU strike — the unofficial tutoring sessions.",                          ambition: "Head of curriculum development for Nigeria's northern states.", award: "Always MIA"        },
+  { name: "Ngozi Uche",         nickname: "Ngo",      initials: "NU", emojis: "💼👠🌟", quote: "Excellence is not optional — it's my default.",                                memory: "Being appointed Student Union Faculty Representative and negotiating the exam timetable change.",              ambition: "CEO of an educational consulting firm.",                 award: "Most Likely to Succeed" },
+  { name: "Emeka Okafor",       nickname: "Emzy",     initials: "EO", emojis: "🎵📚🌙", quote: "Music and knowledge are the same song.",                                        memory: "The candlelight night vigil we held before final exams — someone brought a guitar.",                           ambition: "Develop music-integrated educational curricula.",        award: "Department Comedian"    },
+  { name: "Aisha Bello",        nickname: "Aish",     initials: "AB", emojis: "🌺🤲✨", quote: "Service is the highest form of leadership.",                                    memory: "The community service project we ran in Year 3 — teaching 200 children to read.",                             ambition: "Establish a community learning center in her village.",  award: "Peacemaker"             },
+  { name: "Damilola Fasanya",   nickname: "Dami",     initials: "DF", emojis: "👨‍💻🚀💬", quote: "Every system can be reimagined.",                                            memory: "Coding the department's first student portal as a personal project — the HOD was stunned.",                 ambition: "Build EdTech products that serve 10 million learners.",  award: "Future Billionaire"     },
+  { name: "Kemi Adeyemi",       nickname: "Kemz",     initials: "KA", emojis: "📸🎬🌸", quote: "Document everything. Legacy lives in photos.",                                  memory: "Being the unofficial class photographer for four years — I have 12,000 photos of this department.",          ambition: "Educational documentary filmmaker.",                     award: "Most Fashionable"       },
+  { name: "Seun Olawale",       nickname: "The Prof", initials: "SO", emojis: "📐🏛️🎯", quote: "Discipline is the bridge between goals and accomplishment.",                   memory: "Scoring the highest mark in the History of Education course — 94%.",                                          ambition: "Academic at a world-ranked university.",                 award: "Born Lecturer"          },
+];
+
+/* ===== STATE ===== */
+const PAGE_SIZE = 20;
+let currentFilter   = 'all';
+let currentSearch   = '';
+let visibleCount    = PAGE_SIZE;
+let activeAlpha     = 'all';
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('loaded');
+  buildAlphabetBar();
+  renderGrid();
+  animateCount();
+});
+
+/* ===== ALPHABET BAR ===== */
+function buildAlphabetBar() {
+  const bar    = document.getElementById('alphabetBar');
+  const letters = ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+  const usedLetters = new Set(graduates.map(g => g.name[0].toUpperCase()));
+
+  bar.innerHTML = letters.map(l => {
+    const key      = l === 'All' ? 'all' : l;
+    const inactive = l !== 'All' && !usedLetters.has(l) ? 'inactive' : '';
+    const active   = key === activeAlpha ? 'active' : '';
+    return `<button class="alpha-btn ${active} ${inactive}" data-letter="${key}" onclick="filterAlpha('${key}')">${l}</button>`;
+  }).join('');
+}
+
+function filterAlpha(letter) {
+  activeAlpha  = letter;
+  visibleCount = PAGE_SIZE;
+  renderGrid();
+  buildAlphabetBar();
+  document.getElementById('archiveSearch').value = '';
+  currentSearch = '';
+}
+
+/* ===== SEARCH ===== */
+document.getElementById('archiveSearch').addEventListener('input', function () {
+  currentSearch = this.value.toLowerCase().trim();
+  activeAlpha   = 'all';
+  visibleCount  = PAGE_SIZE;
+  buildAlphabetBar();
+  renderGrid();
+});
+
+/* ===== FILTER LOGIC ===== */
+function getFiltered() {
+  return graduates.filter(g => {
+    const matchSearch = currentSearch === '' ||
+      g.name.toLowerCase().includes(currentSearch) ||
+      g.nickname.toLowerCase().includes(currentSearch);
+    const matchAlpha = activeAlpha === 'all' ||
+      g.name[0].toUpperCase() === activeAlpha;
+    return matchSearch && matchAlpha;
+  });
+}
+
+/* ===== RENDER GRID ===== */
+function renderGrid() {
+  const grid     = document.getElementById('graduateGrid');
+  const filtered = getFiltered();
+  const toShow   = filtered.slice(0, visibleCount);
+  const loadWrap = document.getElementById('loadMoreWrap');
+
+  document.getElementById('resultsCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="no-results">No graduates found. Try a different search.</div>';
+    loadWrap.style.display = 'none';
+    return;
+  }
+
+  grid.innerHTML = toShow.map((g, i) => `
+    <div class="grad-card" onclick="openProfile(${graduates.indexOf(g)})">
+      <div class="grad-avatar">${g.initials}</div>
+      <div>
+        <div class="grad-name">${g.name}</div>
+        <div class="grad-nickname">"${g.nickname}"</div>
+      </div>
+      <div class="grad-view">View Story →</div>
+    </div>
+  `).join('');
+
+  loadWrap.style.display = visibleCount < filtered.length ? 'block' : 'none';
+}
+
+/* ===== LOAD MORE ===== */
+function loadMore() {
+  visibleCount += PAGE_SIZE;
+  renderGrid();
+}
+
+/* ===== COUNT ANIMATION ===== */
+function animateCount() {
+  const el     = document.getElementById('totalCount');
+  const target = graduates.length;
+  let current  = 0;
+  const step   = target / (1500 / 16);
+  const timer  = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current);
+    if (current >= target) clearInterval(timer);
+  }, 16);
+}
+
+/* ===== SURPRISE ME ===== */
+function surpriseMe() {
+  const random = Math.floor(Math.random() * graduates.length);
+  openProfile(random);
+}
+
+/* ===== PROFILE DRAWER ===== */
+function openProfile(index) {
+  const g      = graduates[index];
+  const body   = document.getElementById('profileBody');
+  const overlay = document.getElementById('profileOverlay');
+
+  body.innerHTML = `
+    <div class="profile-avatar-lg">${g.initials}</div>
+    <div class="profile-name-lg">${g.name}</div>
+    <div class="profile-nickname-lg">"${g.nickname}"</div>
+    <div class="profile-emojis-lg">${g.emojis}</div>
+    ${g.award ? `<div style="text-align:center; margin-bottom:1.25rem;"><span class="profile-award-badge">🏆 ${g.award}</span></div>` : ''}
+    <div class="profile-quote-lg">"${g.quote}"</div>
+    <div class="profile-section">
+      <span class="profile-section-label">Best School Memory</span>
+      <div class="profile-section-value">${g.memory}</div>
+    </div>
+    <div class="profile-section">
+      <span class="profile-section-label">Future Ambition</span>
+      <div class="profile-section-value">${g.ambition}</div>
+    </div>
+  `;
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProfile() {
+  document.getElementById('profileOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('profileOverlay').addEventListener('click', function (e) {
+  if (e.target === this) closeProfile();
+});
+
+/* Mobile swipe down to close */
+let touchStartY = 0;
+document.getElementById('profileDrawer').addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.getElementById('profileDrawer').addEventListener('touchend', e => {
+  if (e.changedTouches[0].clientY - touchStartY > 80) closeProfile();
+}, { passive: true });
+
+/* ===== BACK BUTTON — smooth fade out ===== */
+document.getElementById('backBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.4s ease';
+ setTimeout(() => { window.location.href = 'index.html#legacy-wall'; }, 400);
+});
+</script>
+
+</body>
+</html>

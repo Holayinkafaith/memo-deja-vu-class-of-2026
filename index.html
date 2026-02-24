@@ -163,38 +163,36 @@
     </div>
   </div>
 </section>
+ 
 
-<!-- ===== LEGACY WALL ===== -->
+<!-- ===== LEGACY WALL (Homepage Preview) ===== -->
 <section id="legacy-wall">
   <div class="container">
-    <div style="text-align:center; margin-bottom:3rem;" class="reveal">
-      <span class="section-label">127 Graduates</span>
+
+    <div style="text-align:center;" class="reveal">
+      <span class="section-label">Class of 2026</span>
       <h2 class="section-title">The Legacy Wall</h2>
       <div class="section-divider" style="margin:0 auto;"></div>
-      <p style="color:var(--white-60); font-family:var(--font-serif); font-style:italic;">Click a name to reveal their story</p>
     </div>
-    <div class="legacy-grid" id="legacyGrid"></div>
+
+    <!-- Animated stat -->
+    <div class="legacy-hero-stat reveal reveal-delay-1">
+      <span class="legacy-big-number" id="legacyCount">0</span>
+      <span class="legacy-big-label">Graduates. One Shared Legacy.</span>
+    </div>
+
+    <!-- 3 rotating featured graduates -->
+    <div class="featured-graduates reveal reveal-delay-2" id="featuredGrads"></div>
+
+    <!-- CTA -->
+    <div style="text-align:center;" class="reveal reveal-delay-3">
+      <a class="legacy-cta-btn" href="archive.html" id="archiveLink">
+        Explore The Class Archive &nbsp;→
+      </a>
+    </div>
+
   </div>
 </section>
-
-<!-- ===== STUDENT MODAL ===== -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-avatar"   id="modalAvatar"></div>
-    <div class="modal-name"     id="modalName"></div>
-    <div class="modal-emojis"   id="modalEmojis"></div>
-    <div class="modal-quote"    id="modalQuote"></div>
-    <div class="modal-detail">
-      <span class="modal-detail-label">Best School Memory</span>
-      <div class="modal-detail-value" id="modalMemory"></div>
-    </div>
-    <div class="modal-detail">
-      <span class="modal-detail-label">Future Ambition</span>
-      <div class="modal-detail-value" id="modalAmbition"></div>
-    </div>
-  </div>
-</div>
 
 <!-- ===== GALLERY ===== -->
 <section id="gallery">
@@ -241,43 +239,24 @@
   <div class="container">
     <div class="confessions-inner reveal">
 
-      <!-- Section Header -->
       <span class="section-label">No Names. No Judgement.</span>
       <h2 class="section-title">The Confession Wall</h2>
       <div class="section-divider" style="margin:0 auto;"></div>
       <p class="confessions-subtext">
-        That crush you never told. That apology you never gave. That memory only you two share.
-        Say it now — anonymously, forever.
+        That crush you never told. That apology you never gave.
+        That memory only you two share. Say it now — anonymously, forever.
       </p>
 
-      <!-- Submission Form -->
       <form class="confession-form" id="confessionForm">
-
         <div class="confession-field">
           <label class="confession-label">Who is this for? <span>(optional)</span></label>
-          <input
-            type="text"
-            id="confessionTo"
-            name="to"
-            placeholder="e.g. 'You know who you are...' or just a first name"
-            class="confession-input"
-            maxlength="60"
-          />
+          <input type="text" id="confessionTo" placeholder="e.g. 'You know who you are...' or a first name" class="confession-input" maxlength="60" autocomplete="off" />
         </div>
-
         <div class="confession-field">
           <label class="confession-label">Your message <span>(required)</span></label>
-          <textarea
-            id="confessionMessage"
-            name="message"
-            class="confession-textarea"
-            placeholder="Back in 200 level, I always looked forward to your smile in the morning lecture... I never said anything but I want you to know."
-            maxlength="600"
-            required
-          ></textarea>
+          <textarea id="confessionMessage" class="confession-textarea" placeholder="Back in 200 level, I always looked forward to your smile in the morning lecture..." maxlength="600" required></textarea>
           <span class="confession-charcount"><span id="charCount">0</span>/600</span>
         </div>
-
         <div class="confession-field">
           <label class="confession-label">Category <span>(optional)</span></label>
           <div class="confession-tags">
@@ -288,41 +267,25 @@
             <button type="button" class="tag-btn" data-tag="🔥 Hot Take">🔥 Hot Take</button>
           </div>
         </div>
-
-        <!-- Hidden fields -->
         <input type="hidden" id="confessionCategory" value="💌 Confession" />
-
         <button type="submit" class="confession-submit" id="confessionSubmit">
           <span class="submit-icon">🕊️</span>
           <span class="submit-text">Send Anonymously</span>
         </button>
-
       </form>
 
-      <!-- Success State -->
       <div class="confession-success" id="confessionSuccess">
         <div class="success-icon">🕊️</div>
         <h3 class="success-title">Your message has flown.</h3>
-        <p class="success-text">
-          Sent anonymously. No one will ever know it was you —
-          but they'll feel it when it appears on the wall.
-        </p>
+        <p class="success-text">Sent anonymously. No one will ever know it was you — but they'll feel it when it appears on the wall.</p>
         <button class="confession-reset" onclick="resetConfessionForm()">Send Another</button>
       </div>
 
-      <!-- Public Confession Wall -->
-      <div class="confession-wall-section">
-        <h3 class="confession-wall-title">What They're Saying</h3>
-        <p class="confession-wall-sub">Approved confessions from your classmates</p>
-        <div id="confessionWall"></div>
-      </div>
-
-      <!-- Admin Trigger (subtle, at the bottom) -->
-      <div class="admin-trigger-wrap">
+      <div class="confession-bottom-row">
+        <button class="read-wall-btn" onclick="openConfessionWall()">🕊️ &nbsp;Read Confessions</button>
         <button class="admin-trigger-btn" onclick="openAdminPanel()">⚙ Admin</button>
       </div>
 
-      <!-- Admin Panel (hidden until password entered) -->
       <div id="adminPanel">
         <div class="admin-panel-title">⚙ Admin Panel</div>
         <p class="admin-panel-sub">Pending confessions — approve to make them visible on the wall.</p>
@@ -333,7 +296,6 @@
     </div>
   </div>
 </section>
-
 <!-- ===== TIME CAPSULE ===== -->
 <section id="capsule">
   <div class="container">
@@ -453,10 +415,23 @@
     </div>
   </div>
 </footer>
-
+<div class="confession-drawer-overlay" id="confessionDrawerOverlay">
+  <div class="confession-drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-header">
+      <span class="drawer-title">The Confession Wall</span>
+      <span class="drawer-count" id="drawerCount">0 confessions</span>
+      <button class="drawer-close" onclick="closeConfessionWall()">✕</button>
+    </div>
+    <div class="drawer-body" id="confessionWall">
+      <div class="wall-loading">Loading confessions...</div>
+    </div>
+  </div>
+</div>
 <!-- JavaScript (loaded at end of body for performance) -->
 <script src="main.js"></script>
 <script src="confessions.js"></script>
+<script src="votes.js"></script>
 
 </body>
 </html>
